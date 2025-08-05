@@ -81,14 +81,16 @@ const products = [
   },
   {
     title: "Cheeseburger Wrap",
-    paragraph: "Beef patty, cheddar cheese, lettuce, pickles, wrapped in a tortilla",
+    paragraph:
+      "Beef patty, cheddar cheese, lettuce, pickles, wrapped in a tortilla",
     rating: 4.0,
     price: 79.99,
     image: "/images/burger-14.jpg",
   },
   {
     title: "Falafel Pita",
-    paragraph: "Falafel balls, hummus, mixed greens, tomatoes, cucumber in pita",
+    paragraph:
+      "Falafel balls, hummus, mixed greens, tomatoes, cucumber in pita",
     rating: 4.1,
     price: 65.3,
     image: "/images/burger-15.jpg",
@@ -102,7 +104,8 @@ const products = [
   },
   {
     title: "Beef Burrito",
-    paragraph: "Ground beef, rice, beans, cheese, sour cream, wrapped in a flour tortilla",
+    paragraph:
+      "Ground beef, rice, beans, cheese, sour cream, wrapped in a flour tortilla",
     rating: 4.4,
     price: 85.99,
     image: "/images/burger-17.jpg",
@@ -179,9 +182,13 @@ const products = [
   },
 ];
 
-mongoose.connect("mongodb://127.0.0.1:27017/Food-App").then(async () => {
-  await Product.deleteMany({});
-  await Product.insertMany(products);
-  console.log("Database seeded!");
-  mongoose.disconnect();
-});
+mongoose
+  .connect(
+    "mongodb+srv://Faizan:foodserver@food-app.isvmmlu.mongodb.net/BurgerApp"
+  )
+  .then(async () => {
+    await Product.deleteMany({});
+    await Product.insertMany(products);
+    console.log("Database seeded!");
+    mongoose.disconnect();
+  });

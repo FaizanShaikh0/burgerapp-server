@@ -16,7 +16,7 @@ const paymentRoutes = require("./routes/payment");
 app.use("/api", paymentRoutes);
 
 mongoose
-  .connect(process.env.MONGO_URI, {
+  .connect(process.env.MONGO_URI || 8080, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
