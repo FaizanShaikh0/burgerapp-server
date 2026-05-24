@@ -17,8 +17,22 @@ app.use("/images", express.static(path.join(__dirname, "public/images")));
 app.use("/api/products", productRoutes);
 app.use("/api", paymentRoutes);
 
-app.get("/health", (req, res) => {
-  res.status(200).send("OK");
+app.get("/health", async (req, res) => {
+  try {
+    await mongoose.connection.db.admin().ping();
+
+    res.status(200).json({
+      status: "ok",
+      mongodb: "connected",
+      uptime: process.uptime(),
+      timestamp: new Date(),
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      mongodb: "disconnected",
+    });
+  }
 });
 
 mongoose
